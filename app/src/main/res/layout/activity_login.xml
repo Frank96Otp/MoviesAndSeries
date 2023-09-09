@@ -7,7 +7,19 @@
     tools:context=".LoginActivity">
 
 
-
+    <ImageView
+        android:id="@+id/ivPortada"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@null"
+        android:scaleType="centerCrop"
+        android:src="@drawable/backgroud_login"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilLogin"
@@ -17,11 +29,13 @@
         android:layout_marginHorizontal="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/tilPassword"
-        >
+        app:layout_constraintBottom_toTopOf="@id/tilPassword">
+
         <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="340dp"
+
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/md_theme_light_primaryContainer"
             android:hint="@string/login" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -30,26 +44,51 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btn_login"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="100dp"
-        >
+        android:layout_marginBottom="30dp">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="340dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/material_dynamic_primary0"
+            android:textColor="@color/md_theme_light_primaryContainer"
             android:hint="@string/password" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <ImageView
-        android:id="@+id/ivPortada"
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_login"
+        android:layout_width="319dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="20dp"
+        android:enabled="false"
+        android:text="@string/login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:layout_constraintBottom_toTopOf="@id/btn_loginWithGoogle" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_loginWithGoogle"
+        android:layout_width="319dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="20dp"
+        android:text="@string/login_with_google"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btn_singUp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_singUp"
+        android:layout_width="319dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="80dp"
+        android:text="@string/sign_up"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
