@@ -4,15 +4,24 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContract
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.widget.addTextChangedListener
 import com.example.moviesandseries.databinding.ActivityLoginBinding
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class LoginActivity : AppCompatActivity() {
 
 
     private lateinit var binding:ActivityLoginBinding
-
-
+    private lateinit var fireAuth: FirebaseAuth
+    private lateinit var googleLauncher : ActivityResultLauncher<Intent>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,7 +29,13 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setView()
+
+        fireAuth =  Firebase.auth
+        googleLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
+
+        }
     }
+
 
     private fun setView() {
 
@@ -31,6 +46,33 @@ class LoginActivity : AppCompatActivity() {
         binding.tilPassword.editText?.addTextChangedListener {
             binding.btnLogin.isEnabled = validateEmailPassword(binding.tilLogin.editText?.text.toString(), it.toString())
         }
+
+        binding.btnLogin.setOnClickListener {   }
+
+        binding.btnLoginWithGoogle.setOnClickListener {
+                signinWithGoogle()
+        }
+
+        binding.btnSingUp.setOnClickListener {
+                singUpWithFirebase()
+        }
+
+    }
+
+    private fun signinWithGoogle() {
+        val googleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.web_client_id))
+            .requestEmail()
+            .build()
+
+        val googleClient =  GoogleSignIn.getClient(this, googleSignInOptions)
+
+        val intent = googleClient.signInIntent
+
+    }
+
+    private fun singUpWithFirebase() {
+        TODO("Not yet implemented")
     }
 
 
